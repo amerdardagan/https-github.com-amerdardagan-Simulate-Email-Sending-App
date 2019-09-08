@@ -34,8 +34,39 @@ message.addEventListener ('blur' , validateField);
     function validateField () {
         let errors;
 
-        //Validate the length of the field
+        //Validate the length of the fields
         validateLength (this); //odnosi se na trenutno polje koje kliknimo
+
+        //special: validate the email
+        if (this.type === 'email') {
+            validateEmail (this); //special validation-email
+        }
+    }
+
+
+    //Validate the lenghth of the fields
+    function validateLength (field) {
+        if (field.value.length > 0) {
+            field.style.borderBottomColor = 'green';
+            field.classList.remove ('error');
+        }else{
+            field.style.borderBottomColor = 'red';
+            field.classList.add ('error');
+        }
+
+    }
+
+    //validates email (checks for @ value)
+    function validateEmail (field) {
+        let emailText = field.value //text u email polju
+        //check if the email text has @
+        if (emailText.indexOf ('@') !== -1) {
+            field.style.borderBottomColor = 'green';
+            field.classList.remove ('error');
+        }else{
+            field.style.borderBottomColor = 'red';
+            field.classList.add ('error');
+        }
     }
 
 
