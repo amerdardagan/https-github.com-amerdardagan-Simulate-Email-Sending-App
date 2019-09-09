@@ -21,6 +21,8 @@ subject.addEventListener ('blur' , validateField);
 message.addEventListener ('blur' , validateField);
 
 //Send email and resend button
+Form.addEventListener ('submit', submitEmail)
+
 resetBtn.addEventListener ('click', resetForm);
 
 }
@@ -32,6 +34,22 @@ resetBtn.addEventListener ('click', resetForm);
     function appInit () {
         //disable SEND button on load
         sendBtn.disabled = true;
+
+    }
+
+    function submitEmail (e) {
+        e.preventDefault ();
+
+        //when email is submitted-show the spinner!
+        const spinner = document.getElementById ('spinner');
+        spinner.style.display = "block";
+
+        //Hide spinner than add send Email image
+        setTimeout (function () {
+            //Hide spinner after 3 s
+            spinner.style.display = 'none'
+
+        }, 3000);
 
     }
 
