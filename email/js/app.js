@@ -44,12 +44,34 @@ resetBtn.addEventListener ('click', resetForm);
         const spinner = document.getElementById ('spinner');
         spinner.style.display = "block";
 
+        //show second image that email is sent
+        const mailsentImg = document.createElement ('img')
+        mailsentImg.src = 'img/mail.gif';
+        mailsentImg.style.display = 'block';
+
         //Hide spinner than add send Email image
         setTimeout (function () {
             //Hide spinner after 3 s
             spinner.style.display = 'none'
 
+            //show image after spinner is hidded (above)
+        document.getElementById ('loaders').appendChild (mailsentImg);
+
+            //after 5s hide the omage and restart the form
+            setTimeout (function () {
+                Form.reset ();
+                mailsentImg.remove ();
+            }, 5000);
+
+            
+
+
         }, 3000);
+
+            
+
+            
+
 
     }
 
