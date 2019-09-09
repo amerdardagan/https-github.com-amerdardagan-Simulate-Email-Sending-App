@@ -1,8 +1,11 @@
+
 //variables
 const sendBtn = document.getElementById ('sendBtn'),
        email = document.getElementById ('email'),
-       subject = document.getElementById ('subject')
-       message = document.getElementById ('message');
+       subject = document.getElementById ('subject'),
+       message = document.getElementById ('message'),
+       resetBtn = document.getElementById ('resetBtn'),
+       Form = document.getElementById ('email-form');
 
 //event listeners
 eventListeners ();
@@ -17,6 +20,8 @@ email.addEventListener ('blur' , validateField); //blur:napisati nešto u polje 
 subject.addEventListener ('blur' , validateField);
 message.addEventListener ('blur' , validateField);
 
+//Send email and resend button
+resetBtn.addEventListener ('click', resetForm);
 
 }
 
@@ -40,6 +45,17 @@ message.addEventListener ('blur' , validateField);
         //special: validate the email
         if (this.type === 'email') {
             validateEmail (this); //special validation-email
+        }
+
+        //both (lenghth/email function) will return errors, then check if there are errors
+        errors = document.querySelectorAll ('.error')
+
+        //check that all inputs are not empty
+        if (email.value !=='' && subject.value !=='' && message.value !=='') {
+            if (errors.length === 0) {
+                //the send button should be enabled
+                sendBtn.disabled = false;
+            }
         }
     }
 
@@ -68,5 +84,12 @@ message.addEventListener ('blur' , validateField);
             field.classList.add ('error');
         }
     }
+
+    //Reset the Form
+    function resetForm () {
+        Form.reset ();
+    }
+
+//greške: getElementsById; indexOf ('@'); fields.value.length; emailText=field.value; querySelectorAll ('.error)
 
 
