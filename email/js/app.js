@@ -4,8 +4,8 @@ const sendBtn = document.getElementById ('sendBtn'),
        email = document.getElementById ('email'),
        subject = document.getElementById ('subject'),
        message = document.getElementById ('message'),
-       resetBtn = document.getElementById ('resetBtn'),
-       Form = document.getElementById ('email-form');
+       Form = document.getElementById ('email-form'),
+       resetBtn = document.getElementById ('resetBtn');
 
 //event listeners
 eventListeners ();
@@ -16,7 +16,7 @@ function eventListeners () {
 document.addEventListener ('DOMContentLoaded', appInit);
 
 //Valideate the form
-email.addEventListener ('blur' , validateField); //blur:napisati nešto u polje pa click u sljedeće
+email.addEventListener ('blur' , validateField); 
 subject.addEventListener ('blur' , validateField);
 message.addEventListener ('blur' , validateField);
 
@@ -28,9 +28,6 @@ resetBtn.addEventListener ('click', resetForm);
 }
 
 //functions 
-    //App Init (kada prvi put loadiram stranicu 
-        //1.želim da SEND bude disable
-        //2.da ispunim 3 validate polja prije nego mogu SEND
     function appInit () {
         //disable SEND button on load
         sendBtn.disabled = true;
@@ -62,25 +59,14 @@ resetBtn.addEventListener ('click', resetForm);
                 Form.reset ();
                 mailsentImg.remove ();
             }, 5000);
-
-            
-
-
         }, 3000);
-
-            
-
-            
-
-
-    }
+    };
 
     //Validate the Fields
     function validateField () {
-        let errors;
 
         //Validate the length of the fields
-        validateLength (this); //odnosi se na trenutno polje koje kliknimo
+        validateLength (this);
 
         //special: validate the email
         if (this.type === 'email') {
@@ -88,6 +74,7 @@ resetBtn.addEventListener ('click', resetForm);
         }
 
         //both (lenghth/email function) will return errors, then check if there are errors
+        let errors;
         errors = document.querySelectorAll ('.error')
 
         //check that all inputs are not empty
@@ -97,7 +84,7 @@ resetBtn.addEventListener ('click', resetForm);
                 sendBtn.disabled = false;
             }
         }
-    }
+    };
 
 
     //Validate the lenghth of the fields
@@ -130,6 +117,5 @@ resetBtn.addEventListener ('click', resetForm);
         Form.reset ();
     }
 
-//greške: getElementsById; indexOf ('@'); fields.value.length; emailText=field.value; querySelectorAll ('.error)
 
 
